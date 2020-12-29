@@ -20,4 +20,15 @@ class UserTest extends TestCase
         $user = new User;
         $this->assertEquals('', $user->getFullName());
     }
+
+    /**
+     * @test
+     * add doc block to allow the test
+     */
+    public function user_has_first_name()
+    {
+        $user = new User;
+        $user->first_name = "Peter";
+        $this->assertEquals('Peter', $user->first_name);
+    }
 }
