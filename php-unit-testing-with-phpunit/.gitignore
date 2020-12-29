@@ -1,0 +1,5 @@
+# untrack vendor folder
+/vendor
+
+# untrack lock
+*.lock
