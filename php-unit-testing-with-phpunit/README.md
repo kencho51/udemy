@@ -8,3 +8,5 @@
 4. Set phpunit alias(optional)  
 `alias phpunit="./vendor/phpunit/phpunit/phpunit"`  
 5. Create a test file and  `ExampleTest.php`  
+6. To run a unit test, for example  
+`./vendor/phpunit/phpunit/phpunit test/ --filter=testReturnsFullName`  
