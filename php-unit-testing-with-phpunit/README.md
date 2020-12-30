@@ -14,4 +14,9 @@
 7. High the test output  
 `./vendor/phpunit/phpunit/phpunit test/ --filter=testReturnsFullName --color`
 8. Create phpunit configuration xml  
+9. Generate autoload.php file  
+`composer dump-autoload`  
+10. To run test after autoload  
+`./vendor/bin/phpunit test/UserTest.php --bootstrap="vendor/autoload.php"`
+11. 
    
