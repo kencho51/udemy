@@ -8,4 +8,12 @@ class ExampleTest extends TestCase
     {
         $this->assertEquals(4, 2 + 2);
     }
+
+    /**
+     * Quiz 1 solution
+     */
+    public function testTrueIsTrue ()
+    {
+        $this->assertTrue(true, 'Test true msg.');
+    }
 }
