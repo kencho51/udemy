@@ -12,18 +12,24 @@ class QueueTest extends TestCase
     }
 
     /**
+     * Consumer of 1st function and producer of 3rd function
      * @depends testNewQueueIsEmpty
+     * @param Queue $queue
      */
     public function testAnItemIsAddedToTheQueue(Queue $queue)
     {
         $queue->push('green');
         $this->assertEquals(1, $queue->getCount());
+        return $queue;
     }
 
-    public function testAnItemIsRemovedFromTheQueue()
+    /**
+     * Consumer of 2nd function
+     * @depends testAnItemIsAddedToTheQueue
+     * @param Queue $queue
+     */
+    public function testAnItemIsRemovedFromTheQueue(Queue $queue)
     {
-        $queue = new Queue;
-        $queue->push('green');
         $item = $queue->pop();
 
         $this->assertEquals(0, $queue->getCount());
