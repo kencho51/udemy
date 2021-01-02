@@ -4,35 +4,39 @@ use PHPUnit\Framework\TestCase;
 
 class QueueTest extends TestCase
 {
+    protected $queue;
+    protected function setUp(): void
+    {
+        $this->queue = new Queue;
+    }
+
+    /**
+     * Optional
+     * only need when creating a lot of objects that used a lot of memory
+     * or creating external resources, like writing to a file while opening  a network socket
+     */
+    protected function tearDown(): void
+    {
+        unset($this->queue);
+    }
+
     public function testNewQueueIsEmpty()
     {
-        $queue = new Queue;
-        $this->assertEquals(0, $queue->getCount());
-        return $queue;
+        $this->assertEquals(0, $this->queue->getCount());
     }
 
-    /**
-     * Consumer of 1st function and producer of 3rd function
-     * @depends testNewQueueIsEmpty
-     * @param Queue $queue
-     */
-    public function testAnItemIsAddedToTheQueue(Queue $queue)
+    public function testAnItemIsAddedToTheQueue()
     {
-        $queue->push('green');
-        $this->assertEquals(1, $queue->getCount());
-        return $queue;
+        $this->queue->push('green');
+        $this->assertEquals(1, $this->queue->getCount());
     }
 
-    /**
-     * Consumer of 2nd function
-     * @depends testAnItemIsAddedToTheQueue
-     * @param Queue $queue
-     */
-    public function testAnItemIsRemovedFromTheQueue(Queue $queue)
+    public function testAnItemIsRemovedFromTheQueue()
     {
-        $item = $queue->pop();
+        $this->queue->push('green');
+        $item = $this->queue->pop();
 
-        $this->assertEquals(0, $queue->getCount());
+        $this->assertEquals(0, $this->queue->getCount());
         $this->assertEquals('green', $item);
     }
 }
