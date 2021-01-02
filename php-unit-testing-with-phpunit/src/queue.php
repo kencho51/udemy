@@ -4,6 +4,12 @@
 class queue
 {
     /**
+     * Maximum number of items in the queue
+     * @var integer
+     */
+    public const MAX_ITEMS = 5;
+
+    /**
      * Queue items
      * @var array
      */
@@ -12,9 +18,14 @@ class queue
     /**
      * Add item to the end of the queue
      * @param $item
+     *
+     * @throws QueueException if the number of items in the queue exceeds the MAX_ITEMS
      */
     public function push($item)
     {
+        if ($this->getCount() == static::MAX_ITEMS) {
+            throw new QueueException("Queue is full");
+        }
         $this->items[] = $item;
     }
 
@@ -40,4 +51,5 @@ class queue
     {
         $this->items = [];
     }
+
 }
