@@ -35,11 +35,11 @@ class UserTest extends TestCase
         $user = new User;
 
         /**
-         * To create mock mailer class to test
+         * To create mock mailer class to test, without relaying on a real object
          * with matcher method
          * with with method
          */
-        $mock_mailer = $this->createMock(Mailer::class);
+        $mock_mailer = $this->createMock(Mailer::class); // default return is null.
         $mock_mailer->expects($this->once())
                     ->method('sendMessage')
                     ->with($this->equalTo('dave@example.com'), $this->equalTo('Hello'))
@@ -57,4 +57,17 @@ class UserTest extends TestCase
         $this->assertTrue($user->notify("Hello")); //this will delay for 3s.
     }
 
+    public function testCannotNotifyUserWithNoEmail()
+    {
+        $user = new User;
+
+        //getMockBuilder to get the actual mock object
+        $mock_mailer = $this->getMockBuilder(Mailer::class)
+                            ->setMethods(null) //execute the original code
+                            ->getMock();
+
+        $user->setMailer($mock_mailer);
+        $this->expectException(Exception::class);
+        $user->notify("Hello");
+    }
 }
