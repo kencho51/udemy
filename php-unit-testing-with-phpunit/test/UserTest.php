@@ -63,7 +63,7 @@ class UserTest extends TestCase
 
         //getMockBuilder to get the actual mock object
         $mock_mailer = $this->getMockBuilder(Mailer::class)
-                            ->setMethods(null) //execute the original code
+                            ->setMethods(null) //execute the original code, if method passed in as array, ['sendMessage'], will be stubbed
                             ->getMock();
 
         $user->setMailer($mock_mailer);
