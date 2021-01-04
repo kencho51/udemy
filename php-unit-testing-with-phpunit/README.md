@@ -19,4 +19,17 @@
 10. To run test after autoload  
 `./vendor/bin/phpunit test/UserTest.php --bootstrap="vendor/autoload.php"`
 11. 
+
+### To resolve dependency conflicts
+1. Mockery
+```
+   Problem 1
+    - phpunit/phpunit 7.5.20 conflicts with mockery/mockery 1.4.2.
+    - phpunit/phpunit 7.5.20 conflicts with mockery/mockery 1.4.1.
+    - phpunit/phpunit 7.5.20 conflicts with mockery/mockery 1.4.0.
+    - phpunit/phpunit is locked to version 7.5.20 and an update of this package was not requested.
+    - Root composer.json requires mockery/mockery ^1.4 -> satisfiable by mockery/mockery[1.4.0, 1.4.1, 1.4.2].
+```
+Solution:
+`composer require --dev mockery/mockery ^1.2`  
    
