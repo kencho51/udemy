@@ -7,7 +7,7 @@ class OrderTest extends TestCase
     /**
      * One way to include mockery
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }
