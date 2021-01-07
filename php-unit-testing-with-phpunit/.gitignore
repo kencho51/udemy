@@ -3,3 +3,6 @@
 
 # untrack lock
 *.lock
+
+# untrack cache
+*.cache
