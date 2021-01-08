@@ -13,6 +13,7 @@ class ArticleTest extends TestCase
         $this->article = new App\Article;
     }
 
+    
     public function testTitleIsEmptyByDefault()
     {
         $this->assertEmpty($this->article->title);
@@ -28,6 +29,7 @@ class ArticleTest extends TestCase
         $this->assertSame($this->article->getSlug(), "");
     }
 
+    /*
     public function testSlugHasSpacesReplacedByUnderscores()
     {
         $this->article->title = "An example article";
@@ -55,4 +57,34 @@ class ArticleTest extends TestCase
         $this-assertEquals($this->article->getSlug(), "Read_This_Now");
 
     }
+    */
+
+    /**
+     * Use Data Providers method
+     */
+
+    public function titleProvider ()
+    {
+        return [
+            ["An example article", "An_example_article"],
+            ["An    example    \n    article", "An_example_article"],
+            [" An example article ", "An_example_article"],
+            ["Read! This! Now!", "Read_This_Now"]
+        ];
+    }
+
+    /**
+     * @dataProvider titleProvider
+     *
+     * @param [type] $title
+     * @param [type] $slug
+     * @return void
+     */
+     public function testSlug($title, $slug)
+     {
+        $this->article->title = $title;
+        $this-assertEquals($this->article->getSlug(), $slug);
+
+     }
+
 }
