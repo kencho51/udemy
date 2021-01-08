@@ -12,7 +12,8 @@ class Article
     public Function getSlug()
     {
         $slug = $this->title;
-        $slug = str_replace(' ', '_', $slug);
+        //regular expression to catch 1 or more adjaccent whitespaces char
+        $slug = preg_replace('/\s+/', '_', $slug);
         return $slug;
     }
 }
