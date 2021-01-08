@@ -66,10 +66,10 @@ class ArticleTest extends TestCase
     public function titleProvider ()
     {
         return [
-            ["An example article", "An_example_article"],
-            ["An    example    \n    article", "An_example_article"],
-            [" An example article ", "An_example_article"],
-            ["Read! This! Now!", "Read_This_Now"]
+            'Slug Has Spaces Replaced By Underscores' => ["An example article", "An_example_article"],
+            'Slug Has Whitespace Replaced By Single Underscore' => ["An    example    \n    article", "An_example_article"],
+            'Slug Does Not Start Or End With An Underscore' => [" An example article ", "An_example_article"],
+            'Slug Does Not Have Any Non Words Characters' => ["Read! This! Now!", "Read_This_Now"]
         ];
     }
 
