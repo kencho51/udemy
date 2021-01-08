@@ -6,20 +6,30 @@ use function PHPUnit\Framework\assertEquals;
 
 class ArticleTest extends TestCase
 {
-    public function testTitleIsEmptyByDefault()
+    protected $article;
+
+    public function setUp():void
     {
         $article = new App\Article;
-        $this->assertEmpty($article->title);
+    }
+
+    public function testTitleIsEmptyByDefault()
+    {
+        $this->assertEmpty($this->article->title);
     }
 
     public function testSlugIsEmptyWithNoTitle()
     {
-        $article = new App\Article;
         
         //assertEquals just does a boolean comparsion, so null and an empty string are equal
         // $this-assertEquals($article->getSlug(), "");
 
         //assertSame asserts the values are actually identicle
-        $this->assertSame($article->getSlug(), "");
+        $this->assertSame($this->article->getSlug(), "");
+    }
+
+    public function testSlugHasSpacesReplacedByUnderscores()
+    {
+
     }
 }
