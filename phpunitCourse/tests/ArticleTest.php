@@ -10,7 +10,7 @@ class ArticleTest extends TestCase
 
     public function setUp():void
     {
-        $article = new App\Article;
+        $this->article = new App\Article;
     }
 
     public function testTitleIsEmptyByDefault()
@@ -28,8 +28,5 @@ class ArticleTest extends TestCase
         $this->assertSame($this->article->getSlug(), "");
     }
 
-    public function testSlugHasSpacesReplacedByUnderscores()
-    {
 
-    }
 }
