@@ -28,5 +28,10 @@ class ArticleTest extends TestCase
         $this->assertSame($this->article->getSlug(), "");
     }
 
+    public function testSlugHasSpacesReplacedByUnderscores()
+    {
+        $this->article->title = "An example article";
+        $this->assertEquals($this->article->getSlug(), "An_example_article");
 
+    }
 }

@@ -11,7 +11,8 @@ class Article
 
     public Function getSlug()
     {
-        //return empty string
-        return "";
+        $slug = $this->title;
+        $slug = str_replace(' ', '_', $slug);
+        return $slug;
     }
 }
