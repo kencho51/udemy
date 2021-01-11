@@ -7,9 +7,10 @@ class User
     public $email;
 
     /**
-     * Add a property to the User class for a mailer object
+     * Create a callable for the injection dependency
      */
-    protected $mailer;
+    protected $mailer_callable;
+
 
     /**
      * User constructor.
@@ -20,13 +21,10 @@ class User
         $this->email = $email;
     }
 
-    /**
-     * Setter method for mailer
-     * @param Mailer $mailer
-     */
-    public function setMailer(Mailer $mailer)
+
+    public function setMailerCallable(callable $mailer_callable)
     {
-        $this->mailer = $mailer;
+        $this->mailer_callable = $mailer_callable;
     }
 
     /**
@@ -41,7 +39,10 @@ class User
         //Calling on the mailer property, static method of the object class
 //        return $this->mailer::send($this->email, $message);
 
-        return $this->mailer->send($this->email, $message);
+//        return $this->mailer->send($this->email, $message);
+
+        //Calling callable to call static method
+        return call_user_func($this->mailer_callable, $this->email, $message);
     }
 
 }

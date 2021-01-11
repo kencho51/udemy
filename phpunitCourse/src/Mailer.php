@@ -13,7 +13,7 @@ class Mailer
      * @throws InvalidArgumentException If $email is empty
      * @return bool
      */
-    public function send(string $email, string $message)
+    public static function send(string $email, string $message)
     {
         if(empty($email))
         {
