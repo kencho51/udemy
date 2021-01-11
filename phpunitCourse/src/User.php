@@ -6,6 +6,10 @@ class User
 
     public $email;
 
+    /**
+     * Add a property to the User class for a mailer object
+     */
+    protected $mailer;
 
     /**
      * User constructor.
@@ -17,12 +21,28 @@ class User
     }
 
     /**
+     * Setter method for mailer
+     * @param Mailer $mailer
+     */
+    public function setMailer(Mailer $mailer)
+    {
+        $this->mailer = $mailer;
+    }
+
+    /**
      * @param string $message The message
      * @return bool
      */
     public function notify(string $message)
     {
-        return Mailer::send($this->email, $message);
+        //Calling statically
+//        return Mailer::send($this->email, $message);
+
+        //Calling on the mailer property, static method of the object class
+//        return $this->mailer::send($this->email, $message);
+
+        $mailer = new Mailer;
+        return $mailer->send($this->email, $message);
     }
 
 }
