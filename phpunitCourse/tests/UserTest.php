@@ -4,34 +4,23 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
+    public function tearDown(): void
+    {
+        Mockery::close();
+    }
+
     public function testNotifyReturnsTrue()
     {
         $user = new User('dave@example.com');
 
-        // $mailer = new Mailer;
+        //Alias method is not recommended
+        $mock = Mockery::mock('alias:Mailer');
 
-        //Create a mock object which will lead to error/warning
-        //because PHPUnit framework cannot stub static methods
-        //you can only stub instance method
-//        $mailer = $this->createMock(Mailer::class);
+        $mock->shouldReceive('send')
+            ->once()
+            ->with($user->email, 'Hello')
+            ->andReturn(true);
 
-        //Injecting the dependency
-//        $user->setMailer($mailer);
-
-        //Create mock mailer object and inject into user object using setter method
-//        $mailer = $this->createMock(Mailer::class);
-//        $mailer->expects($this->once())
-//               ->method('send')
-//               ->willReturn(true);
-//
-//        $user->setMailer($mailer);
-//
-        //Create annonymous function for the static object
-        $user->setMailerCallable(function ()
-        {
-            echo "mocked";
-            return true;
-        });
-        $this->assertTrue($user->notify('Hello!'));
+        $this->assertTrue($user->notify('Hello'));
     }
 }
