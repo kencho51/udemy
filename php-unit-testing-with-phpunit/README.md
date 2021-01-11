@@ -33,3 +33,5 @@
 Solution:
 `composer require --dev mockery/mockery ^1.2`  
    
+### Important points
+1. `Unit testing` is all about testing classes in isolation. So use dependency injection to mock the dependency.  
