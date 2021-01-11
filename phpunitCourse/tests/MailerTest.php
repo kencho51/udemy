@@ -10,4 +10,10 @@ class MailerTest extends TestCase
         $this->assertTrue(Mailer::send('send@example.com', 'Hello'));
     }
 
+
+    public function testInvalidArgumentExceptionIfEmailIsEmpty()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Mailer::send('','Hello');
+    }
 }
