@@ -16,7 +16,8 @@ class ItemTest extends TestCase
         $this->assertIsInt($item->getID());
     }
 
-    //Usually dont test private method, or have to use reflection
+    //Usually dont test private method which mostly used for internal implementation, so shouldn't be really tested
+    //If necessary, have to use reflection
     public function testTokenIsAString()
     {
         $item = new Item();
@@ -33,5 +34,17 @@ class ItemTest extends TestCase
         $result = $method->invoke($item);
 
         $this->assertIsString($result);
+    }
+
+    public function testPrefixedTokenStartsWithPrefix()
+    {
+        $item = new Item();
+        $reflector = new ReflectionClass(Item::class);
+        $method = $reflector->getMethod('getPrefixedToken');
+        $method->setAccessible(true);
+
+        $result = $method->invokeArgs($item, ['example']);
+
+        $this->assertStringStartsWith('example', $result);
     }
 }
