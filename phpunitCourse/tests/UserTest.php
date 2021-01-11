@@ -18,6 +18,14 @@ class UserTest extends TestCase
         //Injecting the dependency
 //        $user->setMailer($mailer);
 
+        //Create mock mailer object and inject into user object using setter method
+        $mailer = $this->createMock(Mailer::class);
+        $mailer->expects($this->once())
+               ->method('send')
+               ->willReturn(true);
+
+        $user->setMailer($mailer);
+
         $this->assertTrue($user->notify('Hello!'));
     }
 }

@@ -41,8 +41,7 @@ class User
         //Calling on the mailer property, static method of the object class
 //        return $this->mailer::send($this->email, $message);
 
-        $mailer = new Mailer;
-        return $mailer->send($this->email, $message);
+        return $this->mailer->send($this->email, $message);
     }
 
 }
