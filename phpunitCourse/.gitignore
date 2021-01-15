@@ -1,5 +1,5 @@
 # untrack vendor folder
-/vendor
+vendor/
 
 # untrack cache
 *.cache
