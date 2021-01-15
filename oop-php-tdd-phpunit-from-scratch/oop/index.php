@@ -8,7 +8,7 @@ class Video
     public $published = false;
     public $title;
 
-    public function __construct($type, $duration, $title)
+    public function __construct($type = 'mp4', $duration = '08.90', $title = 'default')
     {
         $this->type = $type;
         $this->duration = $duration;
@@ -29,7 +29,6 @@ class Video
 
 //header('Content-Type:text/plain', true);
 $introduction = new Video('mp4', '10.30', 'Introduction to OOP');
-var_dump($introduction);
 
-$video2 = new Video('mp4', '13.30', 'The Second video');
+$video2 = new Video(); //will throw error
 var_dump($video2);
