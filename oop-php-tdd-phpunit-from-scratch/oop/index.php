@@ -3,16 +3,37 @@
 class Video
 {
     // add in the properties/variables
-    public $type;
-    public $duration;
-    public $published = false;
-    public $title;
+    // encapsulation using private or protected, only be accessible inside class
+    private $type;
+    private $duration;
+    private $published = false;
+    private $title;
 
     public function __construct(string $type, float $duration, string $title)
     {
         $this->type = $type;
         $this->duration = $duration;
         $this->title = $title;
+    }
+
+    public function setPublished(bool $state)
+    {
+        $this->published = $state;
+    }
+
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    public function setTitle(string $title)
+    {
+        $this->title = $title;
+    }
+
+    public  function getTitle()
+    {
+        return $this->title;
     }
 
     public function play()
@@ -34,6 +55,7 @@ class Video
 
 //header('Content-Type:text/plain', true);
 $introduction = new Video('mp4', '10.30', 'Introduction to OOP');
+
 
 
 //$video2 = new Video(); //will throw error
