@@ -8,7 +8,7 @@ class Video
     public $published = false;
     public $title;
 
-    public function __construct($type = 'mp4', $duration = '08.90', $title = 'default')
+    public function __construct(string $type, float $duration, string $title)
     {
         $this->type = $type;
         $this->duration = $duration;
