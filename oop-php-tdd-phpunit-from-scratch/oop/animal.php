@@ -47,6 +47,12 @@ header('Content-Type:text/plain', true);
 $dog = new Dog;
 $dog->color = 'Brown';
 $dog->weight = '10';
-$dog->heartRate = 'Okay';
+$dog->heartRate = '60';
 
-var_dump($dog);
+echo "weight=". $dog->weight, PHP_EOL, "Color=", $dog->color, PHP_EOL, "Heart rate =", $dog->heartRate;
+
+$dog->bark();
+$dog->chase();
+$dog->eat();
+$dog->reproduce();
+$dog->breathe();
