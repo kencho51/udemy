@@ -39,6 +39,12 @@ class Dog extends Mammal
     {
         var_dump('I am chasing a rabbit');
     }
+
+    //sub class override the main class property
+    public function breathe()
+    {
+        var_dump('I breathe very fast');
+    }
 }
 
 
