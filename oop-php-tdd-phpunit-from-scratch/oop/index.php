@@ -8,20 +8,14 @@ class Video
     private $duration;
     private $published = false;
     private $title;
-
-    public function __construct(string $type, float $duration, string $title)
-    {
-        $this->type = $type;
-        $this->duration = $duration;
-        $this->title = $title;
-    }
+    private $playStatus;
 
     public function setPublished(bool $state)
     {
         $this->published = $state;
     }
 
-    public function getPublished()
+    private function getPublished()
     {
         return $this->published;
     }
@@ -38,26 +32,26 @@ class Video
 
     public function play()
     {
-        return $this->published ? "The video is playing." : "This video is not yet available.";
+        if ($this->getPublished()) {
+            $this->playStatus = true;
+            return "The video is playing";
+        }
+
+        "This video is not yet available.";
     }
 
 
     public function pause()
     {
-        return $this->published ? "This video is paused." : "";
+        return $this->playStatus ? "This video is paused." : "";
     }
 
-    public function __destruct()
-    {
-        var_dump('Destroying instance of '. get_class());
-    }
 }
 
-//header('Content-Type:text/plain', true);
-$introduction = new Video('mp4', '10.30', 'Introduction to OOP');
+header('Content-Type:text/plain', true);
+$introduction = new Video();
+$introduction->setPublished(true);
 
-
-
-//$video2 = new Video(); //will throw error
-$video2 = new Video('mp4', '12.30', 'The second video');
-var_dump($video2);
+$introduction->setTitle('Introduction to OOP');
+echo $introduction->getTitle(), PHP_EOL;
+echo $introduction->play(), PHP_EOL, $introduction->pause(), PHP_EOL;
