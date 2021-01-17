@@ -4,15 +4,28 @@ class Database
 {
     static private $pdo;
     static public $operators  = ['=', '<>', 'and', 'or', 'like'];
+    private $table;
 
     public static function connect(string $method)
     {
+        //static binding
+        // $obj = new static;
+        // $obj->table;
+
         self::$pdo = $method;
+        return new static; //return entire class object
     }
 
-    public static function create(array $data)
+    public function table(string $name)
     {
-        var_dump('Creating a new database with '. self::$pdo);
+        $this->table = $name;
+        return $this;
+    }
+
+    public function insert(array $data)
+    {
+        var_dump('Connected to the database using '. self::$pdo);
+        var_dump("INSERTING INTO {$this->table} VALUES ('.json_encode($data).')");
     }
 
     public function getMethod()
@@ -23,9 +36,4 @@ class Database
 
 header('Content-Type/plain', true);
 
-var_dump(Database::$operators);
-Database::connect('pdo');
-Database::create([]);
-
-$db = new Database;
-echo PHP_EOL, $db->getMethod();
+Database::connect('pdo')->table('user')->insert(['username'=>'Peter', 'password'=> 'test']);
