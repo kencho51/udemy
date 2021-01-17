@@ -25,7 +25,7 @@ class Database
     public function insert(array $data)
     {
         var_dump('Connected to the database using '. self::$pdo);
-        var_dump("INSERTING INTO {$this->table} VALUES ('.json_encode($data).')");
+        var_dump("INSERTING INTO {$this->table} VALUES (".json_encode($data).")");
     }
 
     public function getMethod()
