@@ -1,0 +1,18 @@
+{
+    "name": "kencho/oop-php-tdd-phpunit-from-scratch",
+    "description": "Learn OOP, PHPUnit from Udemy",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ken",
+            "email": "kencho.gigascience@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src"
+        }
+    },
+    "require": {}
+}
