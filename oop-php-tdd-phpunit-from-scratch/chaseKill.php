@@ -7,10 +7,16 @@ spl_autoload_register(function($className)
 
 header('Content-Type:text/plain', true);
 
-$dog = new Dog;
-$dog->chase('Lion');
-$dog->kill('Lion');
+$billy = new Dog;
+$santa = new Lion;
+$loko = new Rabbit;
 
-$cat = new Cat;
-$cat->chase('Tiger');
-$cat->kill('Tiger');
+$billy->chase($loko);
+$billy->kill($loko);
+
+$santa->chase($billy);
+$santa->kill($billy);
+
+$loko->chaseBy($billy);
+$loko->killBy($billy);
+

@@ -1,9 +1,8 @@
 <?php
 
 
-class Dog extends PreyMethod Implements Predator, Prey
+class Lion extends PreyMethod implements Predator
 {
-
     public function chase(Prey $prey)
     {
         var_dump("I am chasing a ". get_class($prey));
