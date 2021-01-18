@@ -1,7 +1,7 @@
 <?php
 
 
-class PreyMethod
+abstract class PreyMethod
 {
     public function chaseBy(Predator $predator)
     {
@@ -10,6 +10,6 @@ class PreyMethod
 
     public function killBy(Predator $predator)
     {
-        var_dump(get_class(). "has been killed by a ". get_class($predator));
+        var_dump(get_class(new static) . " has been killed by a ". get_class($predator));
     }
 }
