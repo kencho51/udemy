@@ -1,0 +1,5 @@
+#untrack vendor
+/vendor
+
+#untrack lock
+*.lock
